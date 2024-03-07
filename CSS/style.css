@@ -1,8 +1,6 @@
 
 
-h1{
-    text-align: center;
-    }
+
     input[type=text], select {
         width: 100%;
         padding: 12px 20px;
@@ -31,7 +29,6 @@ h1{
            font-family: sans-serif;
       
       }
-      
       
       div {
         border-radius: 5px;
