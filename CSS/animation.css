@@ -1,0 +1,7 @@
+.customerss tr:hover {
+    background-color: #ddd;
+     transition: background-color 0.4s;
+}
+input[type=submit]:hover {
+    background-color: #45a049;
+  }
