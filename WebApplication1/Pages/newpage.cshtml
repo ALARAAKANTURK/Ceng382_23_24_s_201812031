@@ -3,6 +3,36 @@
 @{
      ViewData["Title"] = "newpage";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Actions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="buttonActions">
+    <h1>Button Actions</h1>
+    <button id="toggleButton">Hide/Show</button>
+    
+    <button id="calculateSumBtn">Calculate Sum</button>
+  </div>
+  
+  
+  <form id="sumForm" style="display: none;">
+    <input type="number" id="input1" placeholder="Enter number 1"><br>
+    <input type="number" id="input2" placeholder="Enter number 2"><br>
+    <button type="button" id="calculateBtn">Calculate</button><br>
+    <span id="sumResult" ></span>
+  </form>
+ <script src="~/js/custom.js" ></script>
+</body>
+</html>
+
+<div id="elementsToToggle">
+    
+  
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -79,3 +109,10 @@
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
   </form>
 </main>
+
+</div>
+
+
+
+
+
