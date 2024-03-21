@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZsOWv27tdjFy4XL/lKF+plj3bhmRd9hzweiAM1UFtHg=",
+  "Hash": "XmAJLX5J3li0+oHfCILq0Dz+JVC09z2RaJJfDQrMLCY=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "c:\\Users\\CI\\Desktop\\project\\Ceng382_23_24_s_201812031\\WebApplication1\\wwwroot\\js\\custom.js",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\CI\\Desktop\\project\\Ceng382_23_24_s_201812031\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "js/custom.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\custom.js"
     },
     {
       "Identity": "c:\\Users\\CI\\Desktop\\project\\Ceng382_23_24_s_201812031\\WebApplication1\\wwwroot\\js\\site.js",
