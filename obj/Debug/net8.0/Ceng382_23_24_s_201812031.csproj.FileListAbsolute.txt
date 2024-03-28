@@ -1,0 +1,15 @@
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\bin\Debug\net8.0\Ceng382_23_24_s_201812031.exe
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\bin\Debug\net8.0\Ceng382_23_24_s_201812031.deps.json
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\bin\Debug\net8.0\Ceng382_23_24_s_201812031.runtimeconfig.json
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\bin\Debug\net8.0\Ceng382_23_24_s_201812031.dll
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\bin\Debug\net8.0\Ceng382_23_24_s_201812031.pdb
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.AssemblyInfoInputs.cache
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.AssemblyInfo.cs
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.csproj.CoreCompileInputs.cache
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.sourcelink.json
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.dll
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\refint\Ceng382_23_24_s_201812031.dll
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.pdb
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\Ceng382_23_24_s_201812031.genruntimeconfig.cache
+C:\Users\CI\Desktop\project\Ceng382_23_24_s_201812031\obj\Debug\net8.0\ref\Ceng382_23_24_s_201812031.dll
