@@ -26,7 +26,7 @@ public class ReservationHandler
         schedule[dayIndex, roomIndex] = null;
     }
 
- public void DisplayWeeklySchedule()
+  public void DisplayWeeklySchedule()
 {
     string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
     int numDays = daysOfWeek.Length;
@@ -52,23 +52,23 @@ public class ReservationHandler
     }
 
     // Print table headers
-    Console.Write("┌" + new string('─', timeWidth + 1)); // Time column
+    Console.Write("┌" + new string('─', timeWidth) + "┬"); // Adjusted for the top-left corner
     foreach (var dayWidth in dayWidths)
     {
-        Console.Write("┬" + new string('─', dayWidth)); // Day columns
+        Console.Write(new string('─', dayWidth) + "┬"); // Day columns
     }
-    Console.WriteLine("┐");
+    Console.WriteLine();
 
     // Print day names
-    Console.Write("│" + String.Format("{0,-" + timeWidth + "}", "Time"));
+    Console.Write("│" + String.Format("{0,-" + timeWidth + "}", "Time") + "│");
     for (int i = 0; i < numDays; i++)
     {
-        Console.Write($"│{daysOfWeek[i].PadRight(dayWidths[i])}");
+        Console.Write($"{daysOfWeek[i].PadRight(dayWidths[i])}│");
     }
-    Console.WriteLine("│");
+    Console.WriteLine();
 
     // Display schedule by time slots
-    for (int hour = 9; hour <= 20; hour++) // Assuming time slots from 9:00 AM to 5:00 PM
+    for (int hour = 9; hour <= 20; hour++) // Change the upper bound from 17 to 20
     {
         for (int minute = 0; minute < 60; minute += 30) // Time slots every 30 minutes
         {
@@ -103,12 +103,13 @@ public class ReservationHandler
     }
 
     // Print table footer
-    Console.Write("└" + new string('─', timeWidth + 1)); // Time column
+    Console.Write("└" + new string('─', timeWidth) + "┴"); // Adjusted for the bottom-left corner
     foreach (var dayWidth in dayWidths)
     {
-        Console.Write("┴" + new string('─', dayWidth)); // Day columns
+        Console.Write(new string('─', dayWidth) + "┴"); // Day columns
     }
-    Console.WriteLine("┘");
+    Console.WriteLine();
 }
+
 
 }
