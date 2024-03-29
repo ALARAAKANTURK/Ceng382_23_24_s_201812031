@@ -102,6 +102,7 @@ class Program
                 Date = DateTime.Today.AddDays(4),
                 Time = new TimeSpan(17, 30, 0)
             });
+
             reservationHandler.AddReservation(1, 5, new Reservation
             {
                 ReserverName = "Qell  sell",
@@ -138,6 +139,66 @@ class Program
                     Time = new TimeSpan(10 + i % 8, 0, 0)
                 });
             }
+            // Add dummy reservations for time slots from 17:30 to 20:00
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "Jane Smith",
+                Room = new Room { RoomId = "002", RoomName = "A-102", Capacity = "25" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(17, 30, 0) // 5:30 PM
+            });
+
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "Alice Johnson",
+                Room = new Room { RoomId = "003", RoomName = "A-103", Capacity = "20" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(18, 0, 0) // 6:00 PM
+            });
+
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "Bob Brown",
+                Room = new Room { RoomId = "004", RoomName = "A-104", Capacity = "15" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(18, 30, 0) // 6:30 PM
+            });
+
+            // Add more dummy reservations as needed
+            // Add dummy reservations for time slots from 19:00 to 20:30
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "Emily Wilson",
+                Room = new Room { RoomId = "005", RoomName = "A-105", Capacity = "20" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(19, 0, 0) // 7:00 PM
+            });
+
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "Michael Davis",
+                Room = new Room { RoomId = "006", RoomName = "A-106", Capacity = "15" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(19, 30, 0) // 7:30 PM
+            });
+
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "Sarah Miller",
+                Room = new Room { RoomId = "007", RoomName = "A-107", Capacity = "25" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(20, 0, 0) // 8:00 PM
+            });
+
+            reservationHandler.AddReservation(0, 0, new Reservation
+            {
+                ReserverName = "David Martinez",
+                Room = new Room { RoomId = "008", RoomName = "A-108", Capacity = "30" },
+                Date = DateTime.Today.AddDays(1), // Tomorrow
+                Time = new TimeSpan(20, 30, 0) // 8:30 PM
+            });
+
+            
 
 
 

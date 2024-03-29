@@ -26,7 +26,7 @@ public class ReservationHandler
         schedule[dayIndex, roomIndex] = null;
     }
 
-  public void DisplayWeeklySchedule()
+ public void DisplayWeeklySchedule()
 {
     string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
     int numDays = daysOfWeek.Length;
@@ -37,7 +37,7 @@ public class ReservationHandler
     for (int i = 0; i < numDays; i++)
     {
         dayWidths[i] = Math.Max(daysOfWeek[i].Length + 2, 10); // Minimum width of 10 characters
-        for (int hour = 9; hour <= 17; hour++)
+        for (int hour = 9; hour <= 20; hour++) // Adjusted loop bounds
         {
             var reservation = schedule[i, hour - 9];
             if (reservation != null && reservation.Room != null)
@@ -68,7 +68,7 @@ public class ReservationHandler
     Console.WriteLine();
 
     // Display schedule by time slots
-    for (int hour = 9; hour <= 20; hour++) // Change the upper bound from 17 to 20
+    for (int hour = 9; hour <= 20; hour++) // Adjusted loop bounds
     {
         for (int minute = 0; minute < 60; minute += 30) // Time slots every 30 minutes
         {
@@ -110,6 +110,4 @@ public class ReservationHandler
     }
     Console.WriteLine();
 }
-
-
 }
