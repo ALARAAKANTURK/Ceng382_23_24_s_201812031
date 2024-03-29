@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 public class RoomData
 {
-    public Room[] ? Room { get; set; }
+    public Room[]? Room { get; set; }
 }
 
 public class Room
@@ -66,31 +66,81 @@ class Program
                 Date = DateTime.Today.AddDays(2), // Day after tomorrow
                 Time = new TimeSpan(14, 0, 0) // 2:00 PM
             });
-             reservationHandler.AddReservation(1, 2, new Reservation
+            reservationHandler.AddReservation(1, 2, new Reservation
             {
                 ReserverName = "Jany Same",
                 Room = new Room { RoomId = "003", RoomName = "A-104", Capacity = "27" },
                 Date = DateTime.Today.AddDays(3), // Day after tomorrow
                 Time = new TimeSpan(15, 0, 0) // 2:00 PM
             });
-              reservationHandler.AddReservation(2, 2, new Reservation
+            reservationHandler.AddReservation(2, 2, new Reservation
             {
                 ReserverName = "Ally kell",
                 Room = new Room { RoomId = "004", RoomName = "A-105", Capacity = "28" },
-                Date = DateTime.Today.AddDays(4), // Day after tomorrow
-                Time = new TimeSpan(17, 0, 0) 
+                Date = DateTime.Today.AddDays(4),
+                Time = new TimeSpan(17, 0, 0)
             });
 
-             reservationHandler.AddReservation(2, 3, new Reservation
+            reservationHandler.AddReservation(2, 3, new Reservation
             {
                 ReserverName = "Alice  mall",
                 Room = new Room { RoomId = "005", RoomName = "A-108", Capacity = "29" },
-                Date = DateTime.Today.AddDays(5), // Day after tomorrow
-                Time = new TimeSpan(12, 0, 0) // 2:00 PM
+                Date = DateTime.Today.AddDays(5),
+                Time = new TimeSpan(12, 0, 0)
+            });
+            reservationHandler.AddReservation(2, 4, new Reservation
+            {
+                ReserverName = "Emily  wall",
+                Room = new Room { RoomId = "006", RoomName = "A-121", Capacity = "39" },
+                Date = DateTime.Today.AddDays(4),
+                Time = new TimeSpan(17, 0, 0)
+            });
+            reservationHandler.AddReservation(1, 5, new Reservation
+            {
+                ReserverName = "Eline  sell",
+                Room = new Room { RoomId = "007", RoomName = "A-131", Capacity = "24" },
+                Date = DateTime.Today.AddDays(4),
+                Time = new TimeSpan(17, 30, 0)
+            });
+            reservationHandler.AddReservation(1, 5, new Reservation
+            {
+                ReserverName = "Qell  sell",
+                Room = new Room { RoomId = "019", RoomName = "A-240", Capacity = "12" },
+                Date = DateTime.Today.AddDays(4),
+                Time = new TimeSpan(12, 30, 0)
+            });
+            reservationHandler.AddReservation(1, 2, new Reservation
+            {
+                ReserverName = "kim  loren",
+                Room = new Room { RoomId = "022", RoomName = "A-172", Capacity = "22" },
+                Date = DateTime.Today.AddDays(4),
+                Time = new TimeSpan(12, 30, 0)
             });
 
-        
-    
+            for (int i = 0; i < 20; i++)
+            {
+                reservationHandler.AddReservation(i % 7, i % 8, new Reservation
+                {
+                    ReserverName = $"CampanyA Reservation {i + 1}",
+                    Room = new Room { RoomId = $"00{i + 1}", RoomName = $"A-1{i + 1}", Capacity = "22" },
+                    Date = DateTime.Today.AddDays(i + 10),
+                    Time = new TimeSpan(9 + i % 9, 0, 0)
+                });
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                reservationHandler.AddReservation((i + 20) % 7, (i + 20) % 8, new Reservation
+                {
+                    ReserverName = $"CompanyB Reservation {i + 21}",
+                    Room = new Room { RoomId = $"01{i + 1}", RoomName = $"A-2{i + 1}", Capacity = "22" },
+                    Date = DateTime.Today.AddDays(i + 20),
+                    Time = new TimeSpan(10 + i % 8, 0, 0)
+                });
+            }
+
+
+
             // Display schedule
             reservationHandler.DisplayWeeklySchedule();
         }
