@@ -121,7 +121,7 @@ class Program
             {
                 reservationHandler.AddReservation(i % 7, i % 8, new Reservation
                 {
-                    ReserverName = $"CampanyA Reservation {i + 1}",
+                    ReserverName = $"Person in CampanyA  {i + 1}", //Reservation by people at company A
                     Room = new Room { RoomId = $"00{i + 1}", RoomName = $"A-1{i + 1}", Capacity = "22" },
                     Date = DateTime.Today.AddDays(i + 10),
                     Time = new TimeSpan(9 + i % 9, 0, 0)
@@ -132,7 +132,7 @@ class Program
             {
                 reservationHandler.AddReservation((i + 20) % 7, (i + 20) % 8, new Reservation
                 {
-                    ReserverName = $"CompanyB Reservation {i + 21}",
+                    ReserverName = $"Person in CampanyB {i + 21}", //Reservation by people at company B
                     Room = new Room { RoomId = $"01{i + 1}", RoomName = $"A-2{i + 1}", Capacity = "22" },
                     Date = DateTime.Today.AddDays(i + 20),
                     Time = new TimeSpan(10 + i % 8, 0, 0)
