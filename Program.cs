@@ -180,13 +180,19 @@ class Program
                 Time = new TimeSpan(20, 0, 0) // 8:00 PM
             });
 
-            reservationHandler.AddReservation(0, 0, new Reservation
-            {
-                ReserverName = "David Martinez",
-                Room = new Room { RoomId = "008", RoomName = "A-108", Capacity = "30" },
-                Date = DateTime.Today.AddDays(1), // Tomorrow
-                Time = new TimeSpan(20, 30, 0) // 8:30 PM
-            });
+            // Add the reservation
+Reservation addedReservation = new Reservation
+{
+    ReserverName = "David Martinez",
+    Room = new Room { RoomId = "008", RoomName = "A-108", Capacity = "30" },
+    Date = DateTime.Today.AddDays(1), // Tomorrow
+    Time = new TimeSpan(20, 30, 0) // 8:30 PM
+};
+
+reservationHandler.AddReservation(0, 0, addedReservation);
+
+// Now, let's delete the reservation we just added
+reservationHandler.DeleteReservation(0, 0, addedReservation);
 
             
 
