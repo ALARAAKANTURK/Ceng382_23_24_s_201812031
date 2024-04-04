@@ -3,22 +3,12 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-public class RoomData
+public record RoomData
 {
     public Room[]? Room { get; set; }
 }
 
-public class Room
-{
-    [JsonPropertyName("roomId")]
-    public string? RoomId { get; set; }
 
-    [JsonPropertyName("roomName")]
-    public string? RoomName { get; set; }
-
-    [JsonPropertyName("capacity")]
-    public string? Capacity { get; set; }
-}
 
 class Program
 {
@@ -203,7 +193,7 @@ class Program
 
 
             // Display schedule
-            reservationHandler.DisplayWeeklySchedule();
+            //reservationHandler.DisplayWeeklySchedule();
         }
         else
         {
