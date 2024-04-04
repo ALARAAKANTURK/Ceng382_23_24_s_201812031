@@ -52,7 +52,7 @@ public class ReservationHandler
     }
 
     // Print table headers
-    Console.Write("┌" + new string('─', timeWidth) + "┬"); // Adjusted for the top-left corner
+    Console.Write("┌" + new string('─', timeWidth-1) + "┬"); // Adjusted for the top-left corner
     foreach (var dayWidth in dayWidths)
     {
         Console.Write(new string('─', dayWidth) + "┬"); // Day columns
@@ -60,7 +60,7 @@ public class ReservationHandler
     Console.WriteLine();
 
     // Print day names
-    Console.Write("│" + String.Format("{0,-" + timeWidth + "}", "Time") + "│");
+    Console.Write("│" + String.Format("{0,-" + (timeWidth-1)  + "}", "Time") + "│");
     for (int i = 0; i < numDays; i++)
     {
         Console.Write($"{daysOfWeek[i].PadRight(dayWidths[i])}│");
@@ -103,7 +103,7 @@ public class ReservationHandler
     }
 
     // Print table footer
-    Console.Write("└" + new string('─', timeWidth) + "┴"); // Adjusted for the bottom-left corner
+    Console.Write("└" + new string('─', timeWidth-1) + "┴"); // Adjusted for the bottom-left corner
     foreach (var dayWidth in dayWidths)
     {
         Console.Write(new string('─', dayWidth) + "┴"); // Day columns
