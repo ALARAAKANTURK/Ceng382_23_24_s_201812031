@@ -191,7 +191,7 @@ Reservation addedReservation = new Reservation
 
 reservationHandler.AddReservation(0, 0, addedReservation);
 
-// Now, let's delete the reservation we just added
+
 reservationHandler.DeleteReservation(0, 0, addedReservation);
 
             

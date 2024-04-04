@@ -2,14 +2,19 @@ using System;
 
 public record LogRecord
 {
-    public string? ReserverName { get; set; }
+   private string? ReserverName { get; set; }
 
-   string? RoomName { get; set; }
+   private string? RoomName { get; set; }
 
-    public DateTime Timestamp { get; set; }
+   private DateTime Timestamp { get; set; }
 
-    public LogRecord()
+   public LogRecord(string? reserverName, string? roomName, DateTime timestamp)
     {
-       
+        ReserverName = reserverName;
+        RoomName = roomName;
+        Timestamp = timestamp;
     }
+     public string? GetReserverName() => ReserverName;
+    public string? GetRoomName() => RoomName;
+    public DateTime GetTimestamp() => Timestamp;
 }
