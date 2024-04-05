@@ -37,10 +37,12 @@ class Program
         var roomData = JsonSerializer.Deserialize<RoomData>(jsonString, options);
 
         if (roomData?.Room != null)
-        {
-            ReservationHandler reservationHandler = new ReservationHandler(7, roomData.Room.Length);
-
-
+        {    
+             ILogger logger = new FileLogger("LogData.json");
+            LogHandler logHandler = new LogHandler(logger);
+            ReservationHandler reservationHandler = new ReservationHandler(7, roomData.Room.Length,logHandler);
+                   
+              
             Reservation AddReservation = new Reservation(
             
                 ReserverName : "Sarah Miller",
