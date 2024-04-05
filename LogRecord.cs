@@ -4,8 +4,10 @@ public record LogRecord
 {  
      [JsonPropertyName("reserverName")]
    public string? ReserverName { get; set; }
+
    [JsonPropertyName("roomName")]
    public string? RoomName { get; set; }
+
    [JsonPropertyName("timestamp")]
    public DateTime Timestamp { get; set; }
    
