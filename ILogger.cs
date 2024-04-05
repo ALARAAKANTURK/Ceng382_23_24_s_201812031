@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Collections.Generic;
 
 
-public class ILogger
+public interface ILogger
 {
     public void Log(LogRecord log)
     {
