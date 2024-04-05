@@ -6,11 +6,11 @@ using System.IO;
 
 public class ReservationHandler
 {
-    private List<Reservation> ReservationList = new List<Reservation>();
-
+   private readonly List<Reservation> ReservationList = new List<Reservation>();
+        private readonly LogHandler logHandler;
     public ReservationHandler(int daysInWeek, int roomsCount)
     {
-
+         this.logHandler = logHandler ?? throw new ArgumentNullException(nameof(logHandler));
     }
 
     public void AddReservation(int dayIndex, int roomIndex, Reservation reservation)
