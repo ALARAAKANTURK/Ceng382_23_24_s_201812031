@@ -17,7 +17,7 @@ public class ReservationHandler
     {
         ReservationList.Add(reservation);
         // Calculate the hour of the day for the reservation
-        int hourOfDay = reservation.Time.Hours;
+        int hourOfDay = reservation.Time.Hour;
 
         // Adjust the hour index to match the schedule array
         hourOfDay -= 9; // Assuming the schedule starts from 9:00 AM
