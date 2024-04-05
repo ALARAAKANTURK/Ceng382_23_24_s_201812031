@@ -8,9 +8,14 @@ public class ReservationHandler
 {
    private readonly List<Reservation> ReservationList = new List<Reservation>();
         private readonly LogHandler logHandler;
-    public ReservationHandler(int daysInWeek, int roomsCount)
+    public ReservationHandler(int daysInWeek, int roomsCount,LogHandler logHandler)
     {
-         this.logHandler = logHandler ?? throw new ArgumentNullException(nameof(logHandler));
+        if (logHandler == null)
+        {
+            throw new ArgumentNullException(nameof(logHandler));
+        }
+
+        this.logHandler = logHandler;
     }
 
     public void AddReservation(int dayIndex, int roomIndex, Reservation reservation)
