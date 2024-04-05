@@ -12,10 +12,10 @@ public record Room
     public string? RoomName { get; set; }
 
     [JsonPropertyName("capacity")]
-    public string? Capacity { get; set; }
+    public int? Capacity { get; set; }
 
     
-    public Room(string? roomId, string? roomName, string? capacity)
+    public Room(string? roomId, string? roomName, int? capacity)
     {
         RoomId = roomId;
         RoomName = roomName;
@@ -23,7 +23,7 @@ public record Room
     }
     public Room()
     {
-        
+
     }
 
    

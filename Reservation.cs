@@ -15,8 +15,6 @@ public record Reservation
     [JsonPropertyName("time")]
     public TimeSpan Time { get; set; }
 
-    
-
     public Reservation()
     {
         // Initialize non-nullable properties with default values
