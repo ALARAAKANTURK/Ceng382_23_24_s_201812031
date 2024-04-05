@@ -1,11 +1,21 @@
 using System;
-
+using System.Text.Json.Serialization;
 public record Reservation
-{
-    public string? ReserverName { get; set; }
+{ 
+    
+    [JsonPropertyName("reserverName")]
+     public string? ReserverName { get; set; }
+     
+    [JsonPropertyName("room")]
     public Room? Room { get; set; }
+    
+    [JsonPropertyName("date")]
     public DateTime Date{ get; set; }
+    
+    [JsonPropertyName("time")]
     public TimeSpan Time { get; set; }
+
+    
 
     public Reservation()
     {

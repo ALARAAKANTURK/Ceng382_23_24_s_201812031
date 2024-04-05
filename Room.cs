@@ -13,4 +13,18 @@ public record Room
 
     [JsonPropertyName("capacity")]
     public string? Capacity { get; set; }
+
+    
+    public Room(string? roomId, string? roomName, string? capacity)
+    {
+        RoomId = roomId;
+        RoomName = roomName;
+        Capacity = capacity;
+    }
+    public Room()
+    {
+        
+    }
+
+   
 }

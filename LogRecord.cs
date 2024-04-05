@@ -1,20 +1,19 @@
 using System;
-
+using System.Text.Json.Serialization;
 public record LogRecord
-{
-   private string? ReserverName { get; set; }
-
-   private string? RoomName { get; set; }
-
-   private DateTime Timestamp { get; set; }
-
+{  
+     [JsonPropertyName("reserverName")]
+   public string? ReserverName { get; set; }
+   [JsonPropertyName("roomName")]
+   public string? RoomName { get; set; }
+   [JsonPropertyName("timestamp")]
+   public DateTime Timestamp { get; set; }
+   
    public LogRecord(string? reserverName, string? roomName, DateTime timestamp)
     {
         ReserverName = reserverName;
         RoomName = roomName;
         Timestamp = timestamp;
     }
-     public string? GetReserverName() => ReserverName;
-    public string? GetRoomName() => RoomName;
-    public DateTime GetTimestamp() => Timestamp;
+   
 }
