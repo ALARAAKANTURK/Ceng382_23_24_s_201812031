@@ -38,11 +38,11 @@ class Program
 
         if (roomData?.Room != null)
         {    
-             ILogger logger = new FileLogger("LogData.json");
-            LogHandler logHandler = new LogHandler(logger);
-                 IReservationRepository reservationRepository = new ReservationRepository();
-            ReservationHandler reservationHandler = new ReservationHandler(reservationRepository, logHandler);
-
+              ILogger logger = new FileLogger("LogData.json");
+        LogHandler logHandler = new LogHandler(logger);
+        RoomHandler roomHandler = new RoomHandler("RoomData.json"); // Adjust file path as needed
+         IReservationRepository reservationRepository = new ReservationRepository();
+        ReservationHandler reservationHandler = new ReservationHandler(reservationRepository, logHandler, roomHandler);
 
                    
               
