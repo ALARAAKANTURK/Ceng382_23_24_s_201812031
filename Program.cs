@@ -40,7 +40,10 @@ class Program
         {    
              ILogger logger = new FileLogger("LogData.json");
             LogHandler logHandler = new LogHandler(logger);
-            ReservationHandler reservationHandler = new ReservationHandler(7, roomData.Room.Length,logHandler);
+                 IReservationRepository reservationRepository = new ReservationRepository();
+            ReservationHandler reservationHandler = new ReservationHandler(reservationRepository, logHandler);
+
+
                    
               
             Reservation AddReservation = new Reservation(
