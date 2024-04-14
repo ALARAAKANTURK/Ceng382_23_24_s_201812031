@@ -1,81 +1,50 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-public record RoomData
+﻿using Microsoft.Extensions.DependencyInjection;
+namespace ReservationApp
 {
-    public Room[]? Room { get; set; }
-}
-
-
-
-class Program
-{
-    static void Main(string[] args)
+    public class Program
     {
-        string jsonFilePath = "Data.json";
-        string jsonString;
-
-        try
+        public static void Main(string[] args)
         {
-            jsonString = File.ReadAllText(jsonFilePath);
-        }
-        catch (FileNotFoundException)
-        {
-            Console.WriteLine("File Not Found.");
-            return;
-        }
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<ILogger, FileLogger>()
+                .AddSingleton<IReservationRepository, ReservationRepository>()
+                .AddSingleton<IReservationService, ReservationService>()
+                .AddSingleton<LogHandler>()
+                .AddSingleton<RoomHandler>()
+                .AddSingleton<ReservationHandler>()
+                .BuildServiceProvider();
 
-        var options = new JsonSerializerOptions()
-        {
-            PropertyNameCaseInsensitive = true,
-            ReadCommentHandling = JsonCommentHandling.Skip,
-            AllowTrailingCommas = true
-        };
-
-        var roomData = JsonSerializer.Deserialize<RoomData>(jsonString, options);
-
-        if (roomData?.Room != null)
-        {    
-              ILogger logger = new FileLogger("LogData.json");
-        LogHandler logHandler = new LogHandler(logger);
-        RoomHandler roomHandler = new RoomHandler("RoomData.json"); // Adjust file path as needed
-         IReservationRepository reservationRepository = new ReservationRepository();
-        ReservationHandler reservationHandler = new ReservationHandler(reservationRepository, logHandler, roomHandler);
-
-                   
-              
-            Reservation AddReservation = new Reservation(
-            
-                ReserverName : "Sarah Miller",
-                Room : new Room(RoomId: "007", RoomName: "A-107", Capacity: 25),
-                Date : DateTime.Today.AddDays(1), // Tomorrow
-                Time  : DateTime.Today.Date.AddHours(20).AddMinutes(0) // 8:00 PM
-            );
-
-            // Add the reservation
-             Reservation addedReservation = new Reservation(
-        ReserverName: "David Martinez",
-      Room: new Room(RoomId: "008", RoomName: "A-108", Capacity: 30),
-      Date: DateTime.Today.AddDays(1), // Tomorrow
-       Time: DateTime.Today.Date.AddHours(20).AddMinutes(30) // 8:30 PM
-        );
+            var logger = serviceProvider.GetService<ILogger>();
+            //logger.Log("Starting application");
+            var reservationService = serviceProvider.GetService<IReservationService>();
+            var reservationHandler = serviceProvider.GetService<ReservationHandler>();
+            var rooms = reservationHandler.GetRooms();
 
 
+            if (rooms?.Count > 0)
+            {
+                // Add dummy reservations
+                reservationHandler.AddReservation(new Reservation(
+                    "John Doe",
+                    rooms.FirstOrDefault(),
+                    DateTime.Today.AddDays(1), // Tomorrow
+                    DateTime.Today.AddHours(10) // 10:00 AM
+                ));
 
+                reservationHandler.AddReservation(new Reservation(
+                    "Jane Smith",
+                    rooms.FirstOrDefault(),
+                    DateTime.Today.AddDays(2), // Tomorrow
+                    DateTime.Today.AddHours(14) // 14:00 AM
+                ));
 
-
-
-
-
-
-            // Display schedule
-            //reservationHandler.DisplayWeeklySchedule();
-        }
-        else
-        {
-            Console.WriteLine("No room data found.");
+                // Display schedule
+                reservationService.DisplayWeeklySchedule();
+            }
+            else
+            {
+                Console.WriteLine("No room data found.");
+            }
         }
     }
 }
