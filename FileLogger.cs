@@ -1,25 +1,16 @@
 using System;
-using System.IO;
-using System.Text.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class FileLogger : ILogger
+namespace ReservationApp
 {
-    private readonly string filePath;
-
-    public FileLogger(string filePath)
+    public class FileLogger : ILogger
     {
-        this.filePath = filePath;
-    }
-
-    public  void Log(LogRecord log)
-    {
-        string jsonString = JsonSerializer.Serialize(log);
-
-        using (StreamWriter sw = File.AppendText(filePath))
+        public void Log(LogRecord log)
         {
-            sw.WriteLine(jsonString);
+            throw new NotImplementedException();
         }
-
-        Console.WriteLine("Log record logged successfully.");
     }
 }
