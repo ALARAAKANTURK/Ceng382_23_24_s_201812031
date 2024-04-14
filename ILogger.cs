@@ -1,15 +1,7 @@
-using System;
-using System.Text.Json.Serialization;
-using System.IO;
-using System.Text.Json;
-using System.Collections.Generic;
-
-
-public interface ILogger
+namespace ReservationApp
 {
-    public void Log(LogRecord log)
+    public interface ILogger
     {
-        // Your logging logic here
-        Console.WriteLine($"Logging: ReserverName - {log.ReserverName}, RoomName - {log.RoomName}, Timestamp - {log.Timestamp}");
+        void Log(LogRecord log);
     }
 }
