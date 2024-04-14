@@ -1,22 +1,19 @@
-using System;
-
-public class LogHandler
+namespace ReservationApp
 {
-    private readonly ILogger logger;
-
-    public LogHandler(ILogger logger)
+    public class LogHandler
     {
-        this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
+        private readonly ILogger? _logger;
+        private readonly RoomHandler roomHandler;
 
-    public void AddLog(LogRecord log)
-    {
-        if (log == null)
+        public LogHandler(ILogger logger, RoomHandler roomHandler)
         {
-            throw new ArgumentNullException(nameof(log));
+            _logger = logger;
+            this.roomHandler = roomHandler;
         }
 
-        // Log the record using the provided ILogger instance
-        logger.Log(log);
+        public void AddLog(LogRecord log)
+        {
+            _logger?.Log(log);
+        }
     }
 }
