@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-
-public interface IReservationRepository
+namespace ReservationApp
 {
-    void AddReservation(Reservation reservation);
-    void DeleteReservation(Reservation reservation);
-    IEnumerable<Reservation> GetAllReservations();
+    public interface IReservationRepository
+    {
+        public void AddReservation(Reservation reservation);
+        public void DeleteReservation(Reservation reservation);
+        public List<Reservation> GetAllReservations();
+    }
 }
