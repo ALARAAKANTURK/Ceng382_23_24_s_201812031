@@ -1,18 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-namespace ReservationApp
+namespace Ceng382_23_24_s_201812031
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var serviceProvider = new ServiceCollection()
-                .AddSingleton<ILogger, FileLogger>()
-                .AddSingleton<IReservationRepository, ReservationRepository>()
-                .AddSingleton<IReservationService, ReservationService>()
-                .AddSingleton<LogHandler>()
-                .AddSingleton<RoomHandler>()
-                .AddSingleton<ReservationHandler>()
-                .BuildServiceProvider();
+
+            var serviceProvider = ConfigureServices(new ServiceCollection()).BuildServiceProvider(); ;
 
             var logger = serviceProvider.GetService<ILogger>();
             //logger.Log("Starting application");
@@ -24,19 +18,31 @@ namespace ReservationApp
             if (rooms?.Count > 0)
             {
                 // Add dummy reservations
+
+                var oldReservation = new Reservation(
+                    "John Doe",
+                    rooms.LastOrDefault(),
+                    DateTime.Today.AddDays(1), // Tomorrow
+                    DateTime.Today.AddDays(1).AddHours(14) // 10:00 AM
+                );
+
+                reservationHandler.AddReservation(oldReservation, "John Doe");
+
+                reservationHandler.DeleteReservation(oldReservation);
+
                 reservationHandler.AddReservation(new Reservation(
                     "John Doe",
                     rooms.FirstOrDefault(),
                     DateTime.Today.AddDays(1), // Tomorrow
-                    DateTime.Today.AddHours(10) // 10:00 AM
-                ));
+                    DateTime.Today.AddDays(1).AddHours(10) // 10:00 AM
+                ), "John Doe");
 
                 reservationHandler.AddReservation(new Reservation(
                     "Jane Smith",
-                    rooms.FirstOrDefault(),
+                    rooms.LastOrDefault(),
                     DateTime.Today.AddDays(2), // Tomorrow
-                    DateTime.Today.AddHours(14) // 14:00 AM
-                ));
+                    DateTime.Today.AddDays(2).AddHours(14) // 14:00 AM
+                ), "Jane Smith");
 
                 // Display schedule
                 reservationService.DisplayWeeklySchedule();
@@ -45,6 +51,20 @@ namespace ReservationApp
             {
                 Console.WriteLine("No room data found.");
             }
+        }
+
+        private static IServiceCollection ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<ILogger, FileLogger>();
+            services.AddSingleton<LogFactory>();
+            services.AddSingleton<IReservationRepository, ReservationRepository>();
+            services.AddSingleton<IReservationService, ReservationService>();
+            services.AddSingleton<LogHandler>();
+            services.AddSingleton<RoomHandler>();
+            services.AddSingleton<ReservationHandler>();
+            services.AddSingleton<FileHandler>();
+
+            return services;
         }
     }
 }

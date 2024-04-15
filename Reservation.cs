@@ -1,12 +1,12 @@
-
-namespace ReservationApp
+﻿
+namespace Ceng382_23_24_s_201812031
 {
-    public class Reservation
+    public record Reservation
     {
-        public string? ReserverName { get;}
-        public Room? Room { get;}
-        public DateTime Date { get; }
-        public DateTime Time { get; }
+        public string? ReserverName { get; init; }
+        public Room? Room { get; init; }
+        public DateTime Date { get; init; }
+        public DateTime Time { get; init; }
 
         public Reservation(string? reserverName, Room? room, DateTime date, DateTime time)
         {

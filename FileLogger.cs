@@ -1,16 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ReservationApp
+﻿namespace Ceng382_23_24_s_201812031
 {
     public class FileLogger : ILogger
     {
+        private FileHandler _fileHandler;
+        private string _fileName="LogData.json";
+
+        public FileLogger(FileHandler fileHandler)
+        {
+            _fileHandler = fileHandler;
+        }
+
+        public LoggerType LoggerType => LoggerType.FileLogger;
+
         public void Log(LogRecord log)
         {
-            throw new NotImplementedException();
+            _fileHandler.AppendFile(_fileName, log);
         }
     }
 }

@@ -1,14 +1,12 @@
-namespace ReservationApp
+﻿namespace Ceng382_23_24_s_201812031
 {
     public class LogHandler
     {
-        private readonly ILogger? _logger;
-        private readonly RoomHandler roomHandler;
+        private ILogger? _logger;
 
-        public LogHandler(ILogger logger, RoomHandler roomHandler)
+        public LogHandler(ILogger logger)
         {
             _logger = logger;
-            this.roomHandler = roomHandler;
         }
 
         public void AddLog(LogRecord log)

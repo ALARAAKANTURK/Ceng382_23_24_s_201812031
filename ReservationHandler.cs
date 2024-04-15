@@ -1,54 +1,44 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-
-public class ReservationHandler
+﻿namespace Ceng382_23_24_s_201812031
 {
-    private readonly IReservationRepository reservationRepository;
-    private readonly LogHandler logHandler;
-    private readonly RoomHandler roomHandler;
-
-    public ReservationHandler(IReservationRepository reservationRepository, LogHandler logHandler, RoomHandler roomHandler)
+    public class ReservationHandler
     {
-        this.reservationRepository = reservationRepository ?? throw new ArgumentNullException(nameof(reservationRepository));
-        this.logHandler = logHandler ?? throw new ArgumentNullException(nameof(logHandler));
-        this.roomHandler = roomHandler ?? throw new ArgumentNullException(nameof(roomHandler));
-    }
+        private IReservationRepository _reservationRepository;
+        private LogHandler _logHandler;
+        private RoomHandler _roomHandler;
 
-    public void AddReservation(int dayIndex, int roomIndex, Reservation reservation)
-    {
-        // Get room data
-        List<Room>? rooms = roomHandler.GetRooms();
-        if (rooms == null)
+        public ReservationHandler(IReservationRepository reservationRepository, LogHandler logHandler, RoomHandler roomHandler)
         {
-            Console.WriteLine("Error retrieving room data.");
-            return;
+            _reservationRepository = reservationRepository;
+            _logHandler = logHandler;
+            _roomHandler = roomHandler;
         }
 
-        // Add reservation
-        reservationRepository.AddReservation(reservation);
-
-        // Log the add operation
-        LogRecord log = new LogRecord(DateTime.Now, reservation.ReserverName, "Add Reservation");
-        logHandler.AddLog(log);
-    }
-
-    public void DeleteReservation(int dayIndex, int roomIndex, Reservation reservation)
-    {
-        // Get room data
-        List<Room>? rooms = roomHandler.GetRooms();
-        if (rooms == null)
+        public void AddReservation(Reservation reservation, string reserverName)
         {
-            Console.WriteLine("Error retrieving room data.");
-            return;
+
+            _reservationRepository.AddReservation(reservation);
+            _logHandler.AddLog(new LogRecord(DateTime.Now, reserverName, reservation?.Room?.Name ?? " "));
         }
 
-        // Delete reservation
-        reservationRepository.DeleteReservation(reservation);
+        public void DeleteReservation(Reservation reservation)
+        {
+            _reservationRepository.DeleteReservation(reservation);
+            _logHandler.AddLog(new LogRecord(DateTime.Now, "Reservation Deleted", reservation?.Room?.Name ?? " "));
+        }
 
-        // Log the delete operation
-        LogRecord log = new LogRecord(DateTime.Now, reservation.ReserverName, "Delete Reservation");
-        logHandler.AddLog(log);
+        public List<Reservation> GetAllReservations()
+        {
+            return _reservationRepository.GetAllReservations();
+        }
+
+        public List<Room> GetRooms()
+        {
+            return _roomHandler.GetRooms();
+        }
+
+        public void SaveRooms(List<Room> rooms)
+        {
+            _roomHandler.SaveRooms(rooms);
+        }
     }
 }

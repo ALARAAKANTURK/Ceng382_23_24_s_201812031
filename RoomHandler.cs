@@ -1,45 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
+﻿using System.Text.Json;
 
-public class RoomHandler
+namespace Ceng382_23_24_s_201812031
 {
-    private readonly string filePath;
-
-    public RoomHandler(string filePath)
+    public class RoomHandler
     {
-        this.filePath = filePath;
-    }
+        private FileHandler _fileHandler;
+        private string _filePath= "Data.json";
 
-    public List<Room>? GetRooms()
-    {
-        try
+        public RoomHandler(FileHandler fileHandler)
         {
-            string jsonString = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<List<Room>>(jsonString);
+            _fileHandler = fileHandler;
         }
-        catch (FileNotFoundException)
-        {
-            Console.WriteLine("Room data file not found.");
-        }
-        catch (JsonException)
-        {
-            Console.WriteLine("Error deserializing room data.");
-        }
-        return null;
-    }
 
-    public void SaveRooms(List<Room> rooms)
-    {
-        try
+        public List<Room> GetRooms()
         {
-            string jsonString = JsonSerializer.Serialize(rooms, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, jsonString);
+            var roomData = _fileHandler.ReadFile<RoomData>(_filePath);
+            return roomData?.Rooms?.ToList() ?? new List<Room>();
         }
-        catch (IOException)
+
+        public void SaveRooms(List<Room> rooms)
         {
-            Console.WriteLine("Error writing room data to file.");
+            _fileHandler.WriteFile<RoomData>(_filePath, new RoomData { Rooms = rooms.ToArray()});
         }
     }
 }

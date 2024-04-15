@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rbeueiaIXFOSVu96q4O8OBTtaboOOsdiRwXqO4Wg0m4JWyn30i1BwSLutH15cY/YCXDxN4lVaOMtinBZIUW2lg==",
+  "dgSpecHash": "J+Bs448G8rI/rn0ISUOFbMfnV/kwGmsA06rTfFO5AXIqWIQiuKSOlkV07kAbctIk1hEfiJb+8NmbaTfr9TpgxQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\CI\\Desktop\\project\\Ceng382_23_24_s_201812031\\Ceng382_23_24_s_201812031.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\CI\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\CI\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
