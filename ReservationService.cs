@@ -27,7 +27,7 @@
             {
                 var first = reservations.FirstOrDefault();
                 var last = reservations.LastOrDefault();
-                var d = ((int)first.Date.DayOfWeek)-1; //ilk rezervasyon tarihi
+                var d = ((int)first.Date.DayOfWeek)-1; //ilk rezervasyon tarihi 
                 var date = first.Date.AddDays(-1 * d);//Geriye gitme
                 var dayCount = Math.Ceiling((last?.Date - first?.Date)?.TotalDays ?? 0) + d;
 
