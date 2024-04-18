@@ -1,24 +1,22 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+
 namespace Ceng382_23_24_s_201812031
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-
             var serviceProvider = ConfigureServices(new ServiceCollection()).BuildServiceProvider(); ;
 
-            var logger = serviceProvider.GetService<ILogger>();
-            //logger.Log("Starting application");
+            // Display weekly schedule using ReservationService
             var reservationService = serviceProvider.GetService<IReservationService>();
             var reservationHandler = serviceProvider.GetService<ReservationHandler>();
             var rooms = reservationHandler?.GetRooms();
 
-
             if (rooms?.Count > 0)
             {
                 // Add dummy reservations
-
                 var oldReservation = new Reservation(
                     "John Doe",
                     rooms.LastOrDefault(),
@@ -37,7 +35,7 @@ namespace Ceng382_23_24_s_201812031
                     DateTime.Today.AddDays(1).AddHours(10) // 10:00 AM
                 ), "John Doe");
 
-                reservationHandler ?.AddReservation(new Reservation(
+                reservationHandler?.AddReservation(new Reservation(
                     "Jane Smith",
                     rooms.LastOrDefault(),
                     DateTime.Today.AddDays(2), // Tomorrow
@@ -45,7 +43,42 @@ namespace Ceng382_23_24_s_201812031
                 ), "Jane Smith");
 
                 // Display schedule
-                reservationService ?.DisplayWeeklySchedule();
+                reservationService?.DisplayWeeklySchedule();
+
+                // Example usage of DisplayReservationByReserver method
+                var johnReservations = ReservationService.DisplayReservationByReserver("John Doe");
+                Console.WriteLine("\nReservations by John Doe:");
+                foreach (var reservation in johnReservations)
+                {
+                    Console.WriteLine($"{reservation.ReserverName} - {reservation.Date} {reservation.Time}");
+                }
+
+                // Example usage of DisplayReservationByRoomId method
+                var roomReservations = ReservationService.DisplayReservationByRoomId(rooms.FirstOrDefault()?.Id);
+                Console.WriteLine("\nReservations for Room 1:");
+                foreach (var reservation in roomReservations)
+                {
+                    Console.WriteLine($"{reservation.ReserverName} - {reservation.Date} {reservation.Time}");
+                }
+
+                // Example usage of LogService methods
+                var logByName = LogService.DisplayLogsByName("John Doe");
+                Console.WriteLine("\nLogs for John Doe:");
+                foreach (var log in logByName)
+                {
+                    Console.WriteLine($"{log.ReserverName} - {log.RoomName} - {log.Timestamp}");
+
+                }
+
+                var start = DateTime.Today.AddDays(-1);
+                var end = DateTime.Today;
+                var logsBetween = LogService.DisplayLogs(start, end);
+                Console.WriteLine($"\nLogs between {start} and {end}:");
+                foreach (var log in logsBetween)
+                {
+                    Console.WriteLine($"{log.ReserverName} - {log.RoomName} - {log.Timestamp}");
+
+                }
             }
             else
             {
@@ -65,7 +98,6 @@ namespace Ceng382_23_24_s_201812031
             services.AddSingleton<FileHandler>();
 
             return services;
-        }
-        
+        }        
     }
 }
