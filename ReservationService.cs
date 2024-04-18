@@ -1,4 +1,8 @@
-﻿namespace Ceng382_23_24_s_201812031
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Ceng382_23_24_s_201812031
 {
     public class ReservationService : IReservationService
     {
@@ -27,7 +31,7 @@
             {
                 var first = reservations.FirstOrDefault();
                 var last = reservations.LastOrDefault();
-                var d = ((int)first.Date.DayOfWeek)-1; //ilk rezervasyon tarihi 
+                var d = ((int)first.Date.DayOfWeek) - 1; //ilk rezervasyon tarihi 
                 var date = first.Date.AddDays(-1 * d);//Geriye gitme
                 var dayCount = Math.Ceiling((last?.Date - first?.Date)?.TotalDays ?? 0) + d;
 
@@ -35,7 +39,7 @@
 
                 // Display schedule header
 
-                for (int dayIndex = 0; dayIndex <= dayCount+1; dayIndex++)
+                for (int dayIndex = 0; dayIndex <= dayCount + 1; dayIndex++)
                 {
                     Console.Write("+------------");
                 }
@@ -52,7 +56,7 @@
                 Console.WriteLine("|");
 
 
-                for (int dayIndex = 0; dayIndex <= dayCount+1; dayIndex++)
+                for (int dayIndex = 0; dayIndex <= dayCount + 1; dayIndex++)
                 {
                     Console.Write("+------------");
                 }
@@ -65,7 +69,7 @@
                     {
                         DateTime timeSlot = date.AddHours(hour).AddMinutes(minute);
 
-                        for (int dayIndex = 0; dayIndex <= dayCount+1; dayIndex++)
+                        for (int dayIndex = 0; dayIndex <= dayCount + 1; dayIndex++)
                         {
                             Console.Write("+------------");
                         }
@@ -93,7 +97,7 @@
                         Console.WriteLine(" |");
                     }
                 }
-                for (int dayIndex = 0; dayIndex <= dayCount+1; dayIndex++)
+                for (int dayIndex = 0; dayIndex <= dayCount + 1; dayIndex++)
                 {
                     Console.Write("+------------");
                 }
@@ -101,6 +105,28 @@
             }
 
         }
+        public static List<Reservation> DisplayReservationByReserver(string name)
+        {
+            // Read reservations from JSON file
+            var fileHandler = new FileHandler();
+            var reservations = fileHandler.ReadFile<List<Reservation>>("ReservationData.json") ?? new List<Reservation>();
 
-    }
+            // Filter reservations by reserver name
+            var reservationsByReserver = reservations.Where(r => r.ReserverName == name).ToList();
+            return reservationsByReserver;
+        }
+        public static List<Reservation> DisplayReservationByRoomId(string roomId)
+        {
+            // Read reservations from JSON file
+            var fileHandler = new FileHandler();
+            var reservations = fileHandler.ReadFile<List<Reservation>>("ReservationData.json") ?? new List<Reservation>();
+
+            // Filter reservations by room ID
+            var reservationsByRoomId = reservations.Where(r => r.Room?.Id == roomId).ToList();
+            return reservationsByRoomId;
+        }
+   }
+
+
 }
+
