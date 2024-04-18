@@ -6,7 +6,7 @@ Additionally, it seems that Dependency Injection (DI) principles were not applie
 Therefore, restructuring your code to adhere to the Single Responsibility Principle and utilizing Dependency Injection principles would make your code more modular, easier to maintain, and scalable. Following these principles is particularly crucial in complex systems like web applications, as it improves code quality and enhances development processes in the long run.
 
 
-
+Her bir classın her bir işlemi kendi yerinde olmalı geçen hafta birleşikti bu yüzden single responsibility ihlal edildi dependency injection ile de bağımsız hale getirildi yani ihtiyaç halinde kulllanılması sağlandı dotnet.core bu sayede kendi üzerine topladığı kendi yönettiği için kim kimi kullanıyo düşünmek gerekmiyor
 
 
 
