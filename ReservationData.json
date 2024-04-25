@@ -1,1 +1,0 @@
-[{"ReserverName":"John Doe","Room":{"roomId":"001","roomName":"A-101","capacity":30},"Date":"2024-04-16T00:00:00+03:00","Time":"2024-04-16T10:00:00+03:00"},{"ReserverName":"Jane Smith","Room":{"roomId":"016","roomName":"A-116","capacity":52},"Date":"2024-04-17T00:00:00+03:00","Time":"2024-04-17T14:00:00+03:00"}]
