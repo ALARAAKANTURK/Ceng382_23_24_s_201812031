@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F4v1QMU1lh7qAdWdTNAcPagMoMDnaAs5B1dAsPt0yEBgNBZ5zG4t62mz7ojC7iEqlycEFV8meyPaOz+ybsZaKA==",
+  "dgSpecHash": "m8K4wYmdxHsgjndmi5SxdBOok0IHwnTWDhY3HaBmMJS08r4n9C+XWjsm8F0zaIQBkkg9J/BaFgd9BKG1OzVPig==",
   "success": true,
-  "projectFilePath": "c:\\Users\\CI\\Desktop\\project\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
+  "projectFilePath": "C:\\Users\\CI\\Desktop\\project\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CI\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\CI\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
