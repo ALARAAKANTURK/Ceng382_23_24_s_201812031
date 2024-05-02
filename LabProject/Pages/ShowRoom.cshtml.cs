@@ -10,13 +10,19 @@ namespace MyApp.Namespace
 
 
         //public ShowRoomModel ShowRoom { get; set; } = default!; 
-        private readonly AppDbContext show_contex = new(new DbContextOptions<AppDbContext>());
+        private readonly AppDbContext show_contex ; //readonly üzeri değiştirilemez
+        
+    public ShowRoomModel(AppDbContext context)
+    {
+        show_contex=context;
+    }
         public List<Room> RoomList { get; set; } = default!;
 
         public void OnGet()
         {
-            RoomList = (from item in show_contex.Rooms
-                        select item).ToList();
+            /*RoomList = (from item in show_contex.Rooms
+                        select item).ToList();*/
+                        RoomList=show_contex.Rooms.ToList<Room>();
         }
 
 
