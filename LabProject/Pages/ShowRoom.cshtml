@@ -4,3 +4,22 @@
     ViewData["Title"] = "ShowRoom";
 }
 <h1>Show Room</h1>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Capacity</th>
+            <th scope="col">RoomName</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var room in Model.RoomList)
+    {
+        <tr>
+            <td>@room.Capacity</td>
+            <td>@room.RoomName</td>
+            
+        </tr>
+    }
+    </tbody>
+</table>
