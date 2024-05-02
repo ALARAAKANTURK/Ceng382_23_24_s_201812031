@@ -2,21 +2,23 @@ using MyApp.Namespace;
 
 public class RoomService
 {
-    private readonly AppDbContext addNew_contex;
-    private readonly AppDbContext show_contex;
+    private readonly AppDbContext _contex;
+
     public RoomService(AppDbContext context)
     {
-        this.addNew_contex = context;
-        this.show_contex = context;
+      this._contex=context;
     }
 
     public void AddRoom(Room room)
     {
-        addNew_contex.Add(room);
-        addNew_contex.SaveChanges();
+        _contex.Add(room);
+        _contex.SaveChanges();
     }
 
-
+   public List<Room>GetRooms()
+   {
+        return _contex.Rooms.ToList<Room>();
+   }
 
 
 }

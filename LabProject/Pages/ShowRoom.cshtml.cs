@@ -11,10 +11,10 @@ namespace MyApp.Namespace
 
         //public ShowRoomModel ShowRoom { get; set; } = default!; 
         private readonly AppDbContext show_contex ; //readonly üzeri değiştirilemez
-        
+         RoomService roomService;
     public ShowRoomModel(AppDbContext context)
-    {
-        show_contex=context;
+    {   this.roomService = new RoomService(context);
+
     }
         public List<Room> RoomList { get; set; } = default!;
 
@@ -22,7 +22,7 @@ namespace MyApp.Namespace
         {
             /*RoomList = (from item in show_contex.Rooms
                         select item).ToList();*/
-                        RoomList=show_contex.Rooms.ToList<Room>();
+                        RoomList=roomService.GetRooms();
         }
 
 
