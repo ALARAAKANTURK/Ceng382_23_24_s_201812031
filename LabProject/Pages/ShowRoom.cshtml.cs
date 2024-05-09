@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MyApp.Namespace
 {
-    [Authorize]
+     [Authorize]
     public class ShowRoomModel : PageModel
     {
        //public ShowRoomModel ShowRoom { get; set; } = default!; 
