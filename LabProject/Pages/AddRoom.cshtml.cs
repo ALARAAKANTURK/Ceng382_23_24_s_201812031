@@ -6,21 +6,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
 namespace MyApp.Namespace
-{ 
-   [Authorize]  
+{
+    [Authorize]
 
     public class AddRoomModel : PageModel
     {
-         [BindProperty] 
-    public Room Room { get; set; }
-    // public AddRoomModel AddNewRoom { get; set; } = default!;
-    RoomService roomService;
-    
-    public AddRoomModel(WebAppDataBaseContext context)
-    {
-        this.roomService = new RoomService(context);
-    }
-      public IActionResult OnPost()
+        [BindProperty]
+        public Room Room { get; set; }
+        // public AddRoomModel AddNewRoom { get; set; } = default!;
+        RoomService roomService;
+        public AddRoomModel(WebAppDataBaseContext context)
+        {
+            this.roomService = new RoomService(context);
+        }
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid || Room == null)
             {
