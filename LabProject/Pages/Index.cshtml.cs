@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Identity.Client;
 
 namespace LabProject.Pages;
 
@@ -12,8 +13,14 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+   
+ 
+    public  IActionResult  OnGet()
     {
+         string url = "http://localhost:5054/Identity/Account/Login" 
+      + Request.Query["redirect_url"];
+
+    return Redirect(url);
 
     }
 }
