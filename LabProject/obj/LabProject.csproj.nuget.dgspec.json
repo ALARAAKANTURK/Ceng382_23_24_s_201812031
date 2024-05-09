@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj": {}
+    "c:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj": {
+    "c:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
+        "projectUniqueName": "c:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
         "projectName": "LabProject",
-        "projectPath": "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
+        "projectPath": "c:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
         "packagesPath": "C:\\Users\\CI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\obj\\",
+        "outputPath": "c:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
