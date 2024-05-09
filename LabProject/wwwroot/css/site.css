@@ -19,4 +19,16 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: aquamarine;
+}
+.makecol
+{
+  background-color: rgb(43, 226, 211);
+  text-align: center;
+  position: center;
+
+}
+.navbarColor
+{
+  background-color: rgb(217, 43, 226);
 }
