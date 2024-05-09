@@ -7,7 +7,7 @@ using Microsoft.Identity.Client;
 
 namespace MyApp.Namespace
 { 
-   [Authorize]
+   [Authorize]  
 
     public class AddRoomModel : PageModel
     {
