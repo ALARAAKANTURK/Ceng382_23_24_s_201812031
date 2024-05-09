@@ -32,3 +32,11 @@ body {
 {
   background-color: rgb(217, 43, 226);
 }
+.buttoncolor
+{
+  background-color: rgb(180, 43, 226);
+  text-align: center;
+  position: center;
+  border-color: black;
+
+}
