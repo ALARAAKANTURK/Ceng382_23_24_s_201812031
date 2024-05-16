@@ -10,35 +10,39 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MyApp.Namespace
 {
-     [Authorize]
+    [Authorize]
     public class ReservationsModel : PageModel
     {
+        private RoomService roomService;
+        public List<Room> Rooms { get; set; }
+
+        public ReservationsModel(RoomService roomService)
+        {
+            this.roomService = roomService;
+        }
 
         [BindProperty]
-          
         public Reservation Reservation { get; set; }
-         RoomService roomService;
-           public List<Room> Rooms { get; set; }
 
-       public ReservationsModel(WebAppDataBaseContext context)
-        {
-            this.roomService = new RoomService(context);
-        }
       
-         public IActionResult OnPost()
+        public IActionResult OnPost()
         {
-            
-            roomService.AddReservation(Reservation);
-            return RedirectToAction("Get");
-        }
-        
+            if (!ModelState.IsValid)
+            {
+                Rooms = roomService.GetRooms(); // Reload rooms if there's an error
+                return Page();
+            }
 
-        public void OnGet()
+            // Set the ReserverName to the current logged-in user's username
+            Reservation.ReserverName = User.Identity.Name;
+
+            roomService.AddReservation(Reservation);
+            return RedirectToPage("Get"); // Redirect to a Success page or any other relevant page
+        }
+          public void OnGet()
         {
             Rooms = roomService.GetRooms();
         }
 
-
-        }
-  }
-
+    }
+}
