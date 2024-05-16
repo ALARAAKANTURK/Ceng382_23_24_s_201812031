@@ -26,17 +26,6 @@ public partial class WebAppDataBaseContext : DbContext
         optionsBuilder.UseSqlServer(connectionString);
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Reservation>(entity =>
-        {
-            entity.HasIndex(e => e.RoomId, "IX_Reservations_RoomId");
-
-            entity.HasOne(d => d.Room).WithMany(p => p.Reservations).HasForeignKey(d => d.RoomId);
-        });
-
-        OnModelCreatingPartial(modelBuilder);
-    }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

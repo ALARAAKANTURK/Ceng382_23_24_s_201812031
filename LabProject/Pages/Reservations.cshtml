@@ -1,5 +1,29 @@
 ﻿@page
 @model MyApp.Namespace.ReservationsModel
+
 @{
-    ViewData["Title"] = "Reservations";
+    ViewData["Title"] = "Create Reservation";
 }
+
+<h1>Create Reservation</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Reservation.ReservationDate">Start Date and Time</label>
+        <input asp-for="Reservation.ReservationDate" type="datetime-local" class="form-control"/>
+        <span asp-validation-for="Reservation.ReservationDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Reservation.ReservationEndDate">End Date and Time</label>
+        <input asp-for="Reservation.ReservationEndDate" type="datetime-local" class="form-control"/>
+        <span asp-validation-for="Reservation.ReservationEndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Reservation.RoomId">Room</label>
+        <select asp-for="Reservation.RoomId" asp-items="@(new SelectList(Model.Rooms, "Id", "RoomName"))" class="form-control">
+            <option value="">Please select a room</option>
+        </select>
+        <span asp-validation-for="Reservation.RoomId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
