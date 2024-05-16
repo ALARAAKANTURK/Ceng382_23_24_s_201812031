@@ -33,7 +33,7 @@ namespace MyApp.Namespace
             Reservation.ReserverName = User.Identity.Name;
 
             roomService.AddReservation(Reservation);
-            return RedirectToPage("/Index"); 
+            return RedirectToPage("/Index"); //ShowReservations eklencek 
         }
           public void OnGet()
         {
