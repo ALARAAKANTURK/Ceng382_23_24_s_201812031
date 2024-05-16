@@ -1,30 +1,68 @@
 ﻿@page
 @model MyApp.Namespace.ShowReservationsModel
 @{
-    ViewData["Title"] = "ShowReservations";
+    ViewData["Title"] = "Show Reservations";
 }
-<h1>Show Reservation</h1>
+
+<h1>Show Reservations</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="RoomName">Room Name:</label>
+        <select id="RoomName" name="RoomName" class="form-control">
+            <option value="">All</option>
+            @foreach (var room in Model.Rooms)
+            {
+                <option value="@room.RoomName">@room.RoomName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="StartDate">Start Date:</label>
+        <input type="date" id="StartDate" name="StartDate" class="form-control" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="form-group">
+        <label for="EndDate">End Date:</label>
+        <input type="date" id="EndDate" name="EndDate" class="form-control" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="form-group">
+        <label for="RoomCapacity">Room Capacity:</label>
+        <input type="number" id="RoomCapacity" name="RoomCapacity" class="form-control" value="@Model.RoomCapacity" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<h2>Weekly Timetable</h2>
 <table class="table table-sm table-dark table-hover">
     <thead>
         <tr>
-            <th scope="col">Reserver Name</th>
-            <th scope="col">RoomName</th>
-             <th scope="col">ReservationStart</th>
-              <th scope="col">ReservationEnd</th>
-          
+            <th scope="col">Time/Day</th>
+            @for (int i = 0; i < 7; i++)
+            {
+                <th scope="col">@Model.StartDate?.AddDays(i).ToString("dddd, MMM dd")</th>
+            }
         </tr>
     </thead>
     <tbody>
-    @foreach (var reservation in Model.Reservations )
-    {
-        <tr>
-            <td>@reservation.ReserverName</td>
-            <td>@reservation.RoomId</td>
-             <td>@reservation.ReservationDate</td>
-          <td>@reservation.ReservationEndDate</td>
+        @for (int hour = 0; hour < 24; hour++)
+        {
+            <tr>
+                <td>@hour:00</td>
+                @for (int day = 0; day < 7; day++)
+                {
+                    var currentDate = Model.StartDate?.AddDays(day);
+                    var reservation = Model.Reservations.FirstOrDefault(r => r.ReservationDate.Hour == hour && r.ReservationDate.Date == currentDate);
 
-            
-        </tr>
-    }
+                    <td>
+                        @if (reservation != null)
+                        {
+                            @reservation.ReserverName
+                            <button class="btn btn-sm btn-warning">Edit</button>
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        }
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

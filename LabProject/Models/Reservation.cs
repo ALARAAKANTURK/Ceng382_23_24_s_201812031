@@ -14,6 +14,6 @@ public partial class Reservation
     public DateTime ReservationDate { get; set; }
 
    public DateTime ReservationEndDate { get; set; }
-   public Room room { get; set; }
+   public Room Room { get; set; }
     
 }

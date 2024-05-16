@@ -1,6 +1,7 @@
 
 
 using LabProject.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -39,10 +40,15 @@ public class RoomService
     {
         return _context.Rooms.ToList();
     }
-    public List<Reservation> GetReservations()
+    /*public List<Reservation> GetReservations()
     {
            return _context.Reservations.ToList();
-    }
+    }*/
+    public List<Reservation> GetReservations()
+{
+    return _context.Reservations.Include(r => r.Room).ToList();
+}
+
     
 }
 
