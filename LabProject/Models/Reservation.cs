@@ -13,5 +13,6 @@ public partial class Reservation
 
     public DateTime ReservationDate { get; set; }
 
+   public DateTime ReservationEndDate { get; set; }
     public virtual Room Room { get; set; } = null!;
 }
