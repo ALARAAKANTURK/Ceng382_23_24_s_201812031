@@ -5,6 +5,7 @@ using LabProject.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Identity.Client;
 using System;
 using Microsoft.AspNetCore.Authorization;
 
@@ -27,17 +28,12 @@ namespace MyApp.Namespace
       
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                Rooms = roomService.GetRooms(); // Reload rooms if there's an error
-                return Page();
-            }
-
-            // Set the ReserverName to the current logged-in user's username
+            
+           // Set the ReserverName to the current logged-in user's username
             Reservation.ReserverName = User.Identity.Name;
 
             roomService.AddReservation(Reservation);
-            return RedirectToPage("Get"); // Redirect to a Success page or any other relevant page
+            return RedirectToPage("/Index");
         }
           public void OnGet()
         {
