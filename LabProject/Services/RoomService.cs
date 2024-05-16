@@ -39,6 +39,10 @@ public class RoomService
     {
         return _context.Rooms.ToList();
     }
+    public List<Reservation> GetReservations()
+    {
+           return _context.Reservations.ToList();
+    }
     
 }
 
