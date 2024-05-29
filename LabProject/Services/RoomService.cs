@@ -1,14 +1,12 @@
-
-
 using LabProject.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Security.Claims;
+using System.Linq;
 
 public class RoomService
 {
     private readonly WebAppDataBaseContext _context;
-  //private readonly AplicationDbContext _context2;
 
     public RoomService(WebAppDataBaseContext context)
     {
@@ -17,38 +15,59 @@ public class RoomService
 
     public void AddRoom(Room room)
     { 
-        _context.Rooms.Add(room); // Corrected casing and method name
+        _context.Rooms.Add(room);
         _context.SaveChanges();
     }
 
-   public void AddReservation(Reservation reservation)
-{
-    try
+    public void AddReservation(Reservation reservation)
     {
-        _context.Reservations.Add(reservation);
-        _context.SaveChanges();
+        try
+        {
+            _context.Reservations.Add(reservation);
+            _context.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            // Consider logging the exception
+            Console.WriteLine("An error occurred: " + ex.Message);
+            throw; // Rethrow the exception to handle it further up the call stack if necessary.
+        }
     }
-    catch (Exception ex)
-    {
-        // Consider logging the exception
-        Console.WriteLine("An error occurred: " + ex.Message);
-        throw; // Rethrow the exception to handle it further up the call stack if necessary.
-    }
-}
 
     public List<Room> GetRooms()
     {
         return _context.Rooms.ToList();
     }
-    /*public List<Reservation> GetReservations()
-    {
-           return _context.Reservations.ToList();
-    }*/
+
     public List<Reservation> GetReservations()
-{
-    return _context.Reservations.Include(r => r.Room).ToList();
-}
+    {
+        return _context.Reservations.Include(r => r.Room).ToList();
+    }
 
-    
-}
+    public Reservation GetReservationById(int id)
+    {
+        return _context.Reservations.Include(r => r.Room).FirstOrDefault(r => r.Id == id);
+    }
 
+    public void UpdateReservation(Reservation reservation)
+    {
+        var existingReservation = GetReservationById(reservation.Id);
+        if (existingReservation != null)
+        {
+            existingReservation.ReserverName = reservation.ReserverName;
+            existingReservation.ReservationDate = reservation.ReservationDate;
+            existingReservation.RoomId = reservation.RoomId;
+            _context.SaveChanges();
+        }
+    }
+
+    public void DeleteReservation(int id)
+    {
+        var reservation = GetReservationById(id);
+        if (reservation != null)
+        {
+            _context.Reservations.Remove(reservation);
+            _context.SaveChanges();
+        }
+    }
+}

@@ -8291,11 +8291,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
+      "projectUniqueName": "C:\\Users\\CI\\Downloads\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
       "projectName": "LabProject",
-      "projectPath": "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
+      "projectPath": "C:\\Users\\CI\\Downloads\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\LabProject.csproj",
       "packagesPath": "C:\\Users\\CI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CI\\Desktop\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\obj\\",
+      "outputPath": "C:\\Users\\CI\\Downloads\\LabProject\\Ceng382_23_24_s_201812031\\LabProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

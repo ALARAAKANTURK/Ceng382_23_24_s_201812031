@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LabProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,6 +24,9 @@ namespace MyApp.Namespace
         
         [BindProperty(SupportsGet = true)]
         public int? RoomCapacity { get; set; }
+
+        [BindProperty]
+        public Reservation Reservation { get; set; }
 
         public ShowReservationsModel(RoomService roomService)
         {
@@ -48,6 +52,24 @@ namespace MyApp.Namespace
             {
                 Reservations = Reservations.Where(r => r.Room.Capacity >= RoomCapacity).ToList();
             }
+        }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            _roomService.DeleteReservation(id);
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostEdit()
+        {
+            if (!ModelState.IsValid)
+            {
+                Rooms = _roomService.GetRooms();
+                return Page();
+            }
+
+            _roomService.UpdateReservation(Reservation);
+            return RedirectToPage();
         }
     }
 }

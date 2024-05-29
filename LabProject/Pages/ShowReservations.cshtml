@@ -57,8 +57,14 @@
                         @if (reservation != null)
                         {
                             @reservation.ReserverName
-                            <button class="btn btn-sm btn-warning">Edit</button>
-                            <button class="btn btn-sm btn-danger">Delete</button>
+                            <form method="post" asp-page-handler="Edit">
+                                <input type="hidden" name="id" value="@reservation.Id" />
+                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModal" data-id="@reservation.Id" data-name="@reservation.ReserverName" data-date="@reservation.ReservationDate" data-roomid="@reservation.RoomId">Edit</button>
+                            </form>
+                            <form method="post" asp-page-handler="Delete">
+                                <input type="hidden" name="id" value="@reservation.Id" />
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                         }
                     </td>
                 }
@@ -66,3 +72,56 @@
         }
     </tbody>
 </table>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" method="post" asp-page-handler="Edit">
+                    <input type="hidden" name="id" id="editReservationId" />
+                    <div class="form-group">
+                        <label for="editReserverName">Reserver Name:</label>
+                        <input type="text" id="editReserverName" name="ReserverName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editReservationDate">Reservation Date:</label>
+                        <input type="datetime-local" id="editReservationDate" name="ReservationDate" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="editRoomId">Room:</label>
+                        <select id="editRoomId" name="RoomId" class="form-control">
+                            @foreach (var room in Model.Rooms)
+                            {
+                                <option value="@room.Id">@room.RoomName</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var id = button.data('id'); 
+        var name = button.data('name'); 
+        var date = new Date(button.data('date')).toISOString().slice(0, 16); 
+        var roomid = button.data('roomid'); 
+
+        var modal = $(this);
+        modal.find('#editReservationId').val(id);
+        modal.find('#editReserverName').val(name);
+        modal.find('#editReservationDate').val(date);
+        modal.find('#editRoomId').val(roomid);
+    });
+</script>

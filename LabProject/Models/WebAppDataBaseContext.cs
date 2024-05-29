@@ -26,6 +26,10 @@ public partial class WebAppDataBaseContext : DbContext
         optionsBuilder.UseSqlServer(connectionString);
     }
 
+    internal Reservation FirstOrDefault(Func<object, bool> value)
+    {
+        throw new NotImplementedException();
+    }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
