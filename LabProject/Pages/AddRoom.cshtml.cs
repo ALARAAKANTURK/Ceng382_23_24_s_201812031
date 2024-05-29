@@ -1,3 +1,4 @@
+
 using LabProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace MyApp.Namespace
         public Room Room { get; set; }
         // public AddRoomModel AddNewRoom { get; set; } = default!;
         RoomService roomService;
-        public AddRoomModel(WebAppDataBaseContext context)
+        public AddRoomModel(WebAppDatabaseContext context)
         {
             this.roomService = new RoomService(context);
         }
@@ -25,7 +26,7 @@ namespace MyApp.Namespace
             {
                 return Page();
             }
-            roomService.AddRoom(Room);
+            roomService.AddRooms(Room);
             return RedirectToAction("Get");
         }
         public void OnGet()

@@ -1,30 +1,34 @@
-using LabProject.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using MyApp.Namespace;
+using  LabProject.Models;
 
 public class RoomService
 {
-    private readonly WebAppDataBaseContext _context;
-
-    public RoomService(WebAppDataBaseContext context)
+    private readonly WebAppDatabaseContext a_context;
+    public List<Room> RoomList { get; set; } = default!;
+    public RoomService(WebAppDatabaseContext context)
     {
-        _context = context;
+        this.a_context = context;
     }
+    public void AddRooms(Room room)
+    {
+        a_context.Add(room);
+        a_context.SaveChanges();
+        LogAction("Add Room", $"Room added: {room.RoomName}");
 
-    public void AddRoom(Room room)
-    { 
-        _context.Rooms.Add(room);
-        _context.SaveChanges();
     }
-
+    public List<Room> GetRooms()
+    {
+        return a_context.Rooms.ToList<Room>();
+    }
     public void AddReservation(Reservation reservation)
     {
         try
         {
-            _context.Reservations.Add(reservation);
-            _context.SaveChanges();
+            a_context.Reservations.Add(reservation);
+            a_context.SaveChanges();
+            LogAction("Add Reservation", $"Reservation was added: {reservation.Id}");
+
         }
         catch (Exception ex)
         {
@@ -32,42 +36,46 @@ public class RoomService
             Console.WriteLine("An error occurred: " + ex.Message);
             throw; // Rethrow the exception to handle it further up the call stack if necessary.
         }
-    }
 
-    public List<Room> GetRooms()
-    {
-        return _context.Rooms.ToList();
     }
-
-    public List<Reservation> GetReservations()
+    public void DeleteReservation(int reservationId)
     {
-        return _context.Reservations.Include(r => r.Room).ToList();
-    }
-
-    public Reservation GetReservationById(int id)
-    {
-        return _context.Reservations.Include(r => r.Room).FirstOrDefault(r => r.Id == id);
-    }
-
-    public void UpdateReservation(Reservation reservation)
-    {
-        var existingReservation = GetReservationById(reservation.Id);
-        if (existingReservation != null)
-        {
-            existingReservation.ReserverName = reservation.ReserverName;
-            existingReservation.ReservationDate = reservation.ReservationDate;
-            existingReservation.RoomId = reservation.RoomId;
-            _context.SaveChanges();
-        }
-    }
-
-    public void DeleteReservation(int id)
-    {
-        var reservation = GetReservationById(id);
+        var reservation = a_context.Reservations.Find(reservationId);
         if (reservation != null)
         {
-            _context.Reservations.Remove(reservation);
-            _context.SaveChanges();
+            a_context.Reservations.Remove(reservation);
+            a_context.SaveChanges();
+            LogAction("Delete Reservation", $"Reservation deleted: {reservation.Id}");
+
         }
+    }
+    public void EditReservation(Reservation Newreservation)
+    {
+        var existingReservation = a_context.Reservations.Find(Newreservation.Id);
+        if (existingReservation != null)
+        {
+            existingReservation.RoomId = Newreservation.RoomId;
+            existingReservation.ReservationDate =Newreservation.ReservationDate;
+            existingReservation.ReservationEndDate = Newreservation.ReservationEndDate;
+            existingReservation.ReserverName = Newreservation.ReserverName;
+            a_context.SaveChanges();
+            LogAction("Edit Reservation", $"Reservation edited: {Newreservation.Id}");
+
+        }
+    }
+    public List<Reservation> GetReservations()
+    {
+        return a_context.Reservations.Include(r => r.Room).ToList();
+    }
+    private void LogAction(string action, string details)
+    {
+        var log = new LogTable    
+        {
+            LogDate = DateTime.Now,
+            Details = $"{action}: {details}"
+        };
+
+        a_context.LogTables.Add(log);
+        a_context.SaveChanges();
     }
 }

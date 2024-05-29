@@ -11,7 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 var connectionString2 = builder.Configuration.GetConnectionString("MyConnection") ?? throw new InvalidOperationException("Connection string 'MyConnection' not found.");
-builder.Services.AddDbContext<WebAppDataBaseContext>(options =>
+builder.Services.AddDbContext<WebAppDatabaseContext>(options =>
     options.UseSqlServer(connectionString2));
 
 // Register RoomService as a scoped service

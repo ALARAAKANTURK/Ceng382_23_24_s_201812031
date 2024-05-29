@@ -68,7 +68,7 @@ namespace MyApp.Namespace
                 return Page();
             }
 
-            _roomService.UpdateReservation(Reservation);
+            _roomService.EditReservation(Reservation);
             return RedirectToPage();
         }
     }

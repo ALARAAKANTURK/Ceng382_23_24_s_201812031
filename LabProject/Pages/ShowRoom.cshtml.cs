@@ -10,9 +10,9 @@ namespace MyApp.Namespace
     public class ShowRoomModel : PageModel
     {
        //public ShowRoomModel ShowRoom { get; set; } = default!; 
-        private readonly WebAppDataBaseContext show_contex; //readonly üzeri değiştirilemez
+        private readonly WebAppDatabaseContext show_contex; //readonly üzeri değiştirilemez
         RoomService roomService;
-        public ShowRoomModel(WebAppDataBaseContext context)
+        public ShowRoomModel(WebAppDatabaseContext context)
         {
             this.roomService = new RoomService(context);
 
